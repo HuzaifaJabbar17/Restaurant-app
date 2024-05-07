@@ -1,0 +1,52 @@
+ created a folder resto app 
+  npx create-next-app@latest .
+
+  created a repository in github --> Restaurant app
+
+  after that paste this commands on terminal.
+  
+git remote add origin https://github.com/HuzaifaJabbar17/Restaurant-app.git
+git branch -M main
+git push -u origin main
+
+files is on gtihub after refreshing the webpage
+
+in scr folder ---> app folder ----> created a restaurant folder ----> page.js
+
+in nextjs routing is based on file system based routing
+
+always used fragment for creating components
+default will be always export default nameoftheFunction
+
+go to localhost:3000/restaurant
+it will serve you the page 
+
+we can created different pages for login , signup 
+but here we are doing on the same page and will render it on conditions because 
+if more page is there it will take more time on rendering so the application get slow
+
+now we have to create a folder of components so we creating a folder in app 
+with name starting with underscore because we dont render it on the website 
+
+src ----> app ------> _components ----> this folder will not be rendered & it is private and it will contain all components
+
+
+erase the gloabal.css file content  ----> i.e to erase the default css
+
+in app ----> go to page.js ---> erase everything inside the main tag and also the styling inserted in the main tag
+
+export default function Home() {
+  return (
+    <main>
+      
+    </main>
+  );
+}
+
+this page.js is the root page of our application 
+whatever will be inside our main tag will be rendered on the root page of our application
+
+now whatever will be shown in our ui that should contain this lina at the top of the file
+'use client'
+
+by default all the components in nextjs are server components so for frontend components we have to declare that it its client component
