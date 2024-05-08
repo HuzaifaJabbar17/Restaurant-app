@@ -56,3 +56,23 @@ also import the styling file in page.js
 
 A component shoul always start with capital letters
 we did a mistake so we have to rectify it
+
+create env file in root folder ---> .env.local
+
+created a new folder lib
+
+src ----> app -----> lib
+
+create a api folder in app 
+in src ---> app ----> api 
+
+mongoose.connect(connection string, {useNewUrlParser : true})
+
+restaurant.models.modelname
+
+in db connection there is also one way to 
+keep the username and password of our database in .env file 
+so that if we change the password we dont have to go to the connection string and correct it
+
+
+ 

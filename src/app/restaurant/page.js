@@ -1,10 +1,10 @@
 "use client";
 import { useState } from "react";
-import RestaurantHeader from "../_components/restaurantHeader";
-import RestaurantLogin from "../_components/restaurantLogin";
+import RestaurantHeader from "../_components/RestaurantHeader";
+import RestaurantLogin from "../_components/RestaurantLogin";
 import RestaurantSignUp from "../_components/RestaurantSignUp";
-import "./style.css";
 import RestaurantFooter from "../_components/RestaurantFooter";
+import "./style.css";
 
 const Restaurant = () => {
   const [Login, setLogin] = useState(true);
