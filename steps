@@ -50,3 +50,9 @@ now whatever will be shown in our ui that should contain this lina at the top of
 'use client'
 
 by default all the components in nextjs are server components so for frontend components we have to declare that it its client component
+
+in a restaurant folder we are creating style file in it dedicated to the restaurant page
+also import the styling file in page.js
+
+A component shoul always start with capital letters
+we did a mistake so we have to rectify it
