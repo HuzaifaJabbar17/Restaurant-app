@@ -75,4 +75,14 @@ keep the username and password of our database in .env file
 so that if we change the password we dont have to go to the connection string and correct it
 
 
- 
+
+ const {username,password} = process.env
+export const connectionStr="mongodb+srv://"+username+":"+password+"@cluster0.u1bjqdj.mongodb.net/restoDB?retryWrites=true&w=majority&appName=Cluster0";
+
+
+export async function GET(){
+    await mongoose.connect(connectionStr,{useNewUrlParser:true});
+    const data= await restaurantSchema.find()
+    console.log(data);
+
+return NextResponse.json({result:data})
