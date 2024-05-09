@@ -4,14 +4,24 @@ const RestaurantSignUp = () => {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [city, setCity] = useState("");
-  const [address,setAddress] = useState("");
+  const [address, setAddress] = useState("");
   const [contact, setContact] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
-  const handleSignUp =() =>{
-    console.log(email,password,confirmPassword,name,city,address,contact);
-  }
+  const handleSignUp = async () => {
+    console.log(email, password, confirmPassword, name, city, address, contact);
+    let result = await fetch("http://localhost:3000/api/restaurant", {
+      method: "POST",
+      body: JSON.stringify({ email, password, name, city, address, contact }),
+    });
+    result: await result.json();
+    console.log(result);
+
+    if (result.success) {
+      alert("Restaurant registered successfully");
+    }
+  };
 
   return (
     <>
@@ -90,9 +100,7 @@ const RestaurantSignUp = () => {
           </div>
 
           <div className="input-wrapper">
-            <button type="" className="button" 
-            onClick={handleSignUp}
-            >
+            <button type="" className="button" onClick={handleSignUp}>
               {" "}
               SignUp
             </button>
