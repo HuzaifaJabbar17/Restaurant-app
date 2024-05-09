@@ -86,3 +86,7 @@ export async function GET(){
     console.log(data);
 
 return NextResponse.json({result:data})
+---->restaurant ---> dashbord folder ---->page.js
+
+to access the dashboard page we have go 
+http://localhost:3000/restaurant/dashboard
