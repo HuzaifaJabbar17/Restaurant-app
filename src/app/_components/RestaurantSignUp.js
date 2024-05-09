@@ -15,7 +15,7 @@ const RestaurantSignUp = () => {
       method: "POST",
       body: JSON.stringify({ email, password, name, city, address, contact }),
     });
-    result: await result.json();
+    result=await result.json();
     console.log(result);
 
     if (result.success) {
