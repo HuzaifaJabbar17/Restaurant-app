@@ -1,4 +1,24 @@
+import { useState } from "react";
+
 const RestaurantLogin = () => {
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
+
+  const [error,setError] = useState();
+
+  const handleLogin = () => {
+    if(!email || !password){
+      setError(true);
+      return false;
+    }
+    else{
+      setError(false)
+    }
+    console.log(email,password);
+  }
+
+
+
   return (
     <>
       <div>
@@ -10,17 +30,28 @@ const RestaurantLogin = () => {
               type="text"
               placeholder="enter email id"
               className="input-field"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             ></input>
+
+            {
+              error && !email && <span className="input-error">Please fill the field</span>
+            }
           </div>
           <div className="input-wrapper">
             <input
               type="password"
               placeholder="enter password "
               className="input-field"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             ></input>
+               {
+              error && !password && <span className="input-error">Please fill the field</span>
+            }
           </div>
           <div className="input-wrapper">
-            <button type="" className="button">
+            <button onClick={handleLogin} type="" className="button">
               {" "}
               Login
             </button>
