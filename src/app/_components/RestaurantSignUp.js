@@ -10,23 +10,46 @@ const RestaurantSignUp = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
+  const [error, setError] = useState(false);
+  const [passwordError, setPasswordError] = useState(false);
+
   const router = useRouter();
 
   const handleSignUp = async () => {
+    if (password !== confirmPassword) {
+      setPasswordError(true);
+      return false;
+    } else {
+      setPasswordError(false);
+    }
+    if (
+      !email ||
+      !password ||
+      !confirmPassword ||
+      !name ||
+      !city ||
+      !address ||
+      !contact
+    ) {
+      setError(true);
+      return false;
+    } else {
+      setError(false);
+    }
     console.log(email, password, confirmPassword, name, city, address, contact);
     let response = await fetch("http://localhost:3000/api/restaurant", {
       method: "POST",
       body: JSON.stringify({ email, password, name, city, address, contact }),
     });
 
-    response= await response.json();
+    response = await response.json();
     console.log(response);
 
     if (response.success) {
       // alert("Restaurant registered successfully");
-      const {result} = response;
+      const { result } = response;
       delete result.password;
-      localStorage.setItem("restaurantUser",JSON.stringify(result));
+      localStorage.setItem("restaurantUser", JSON.stringify(result));
       router.push("/restaurant/dashboard");
     }
   };
@@ -45,6 +68,10 @@ const RestaurantSignUp = () => {
               value={email}
               onChange={(event) => setEmail(event.target.value)}
             ></input>
+
+            {error && !email && (
+              <span className="input-error"> please fill the field </span>
+            )}
           </div>
 
           <div className="input-wrapper">
@@ -55,6 +82,9 @@ const RestaurantSignUp = () => {
               value={name}
               onChange={(event) => setName(event.target.value)}
             ></input>
+            {error && !name && (
+              <span className="input-error"> please fill the field </span>
+            )}
           </div>
 
           <div className="input-wrapper">
@@ -65,6 +95,9 @@ const RestaurantSignUp = () => {
               value={city}
               onChange={(event) => setCity(event.target.value)}
             ></input>
+            {error && !city && (
+              <span className="input-error"> please fill the field </span>
+            )}
           </div>
 
           <div className="input-wrapper">
@@ -75,6 +108,9 @@ const RestaurantSignUp = () => {
               value={address}
               onChange={(event) => setAddress(event.target.value)}
             ></input>
+            {error && !address && (
+              <span className="input-error"> please fill the field </span>
+            )}
           </div>
 
           <div className="input-wrapper">
@@ -85,6 +121,9 @@ const RestaurantSignUp = () => {
               value={contact}
               onChange={(event) => setContact(event.target.value)}
             ></input>
+            {error && !contact && (
+              <span className="input-error"> please fill the field </span>
+            )}
           </div>
 
           <div className="input-wrapper">
@@ -95,6 +134,15 @@ const RestaurantSignUp = () => {
               value={password}
               onChange={(event) => setPassword(event.target.value)}
             ></input>
+            {passwordError && (
+              <span className="input-error">
+                {" "}
+                password and confirmPassword does not match{" "}
+              </span>
+            )}
+            {error && !password && (
+              <span className="input-error"> please fill the field </span>
+            )}
           </div>
 
           <div className="input-wrapper">
@@ -105,6 +153,15 @@ const RestaurantSignUp = () => {
               value={confirmPassword}
               onChange={(event) => setConfirmPassword(event.target.value)}
             ></input>
+            {passwordError && (
+              <span className="input-error">
+                {" "}
+                password and confirmPassword does not match{" "}
+              </span>
+            )}
+            {error && !confirmPassword && (
+              <span className="input-error"> please fill the field </span>
+            )}
           </div>
 
           <div className="input-wrapper">
