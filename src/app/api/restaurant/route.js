@@ -13,8 +13,22 @@ export async function GET() {
 export async function POST(request) {
   let payload = await request.json();
   await mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true });
-  const restaurant = new Restaurant(payload);
-  const result = await restaurant.save();
-  console.log(payload);
-  return NextResponse.json({ result,success:true });
+  let result;
+  let success = false;
+  if (payload.login) {
+    result = await Restaurant.findOne({
+      email: payload.email,
+      password: payload.password,
+    });
+    if (result) {
+      success = true;
+    }
+  } else {
+    const restaurant = new Restaurant(payload);
+    result = await restaurant.save();
+    if (result) {
+      success = true;
+    }
+  }
+  return NextResponse.json({ result, success });
 }
