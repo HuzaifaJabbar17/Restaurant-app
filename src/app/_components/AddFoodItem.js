@@ -1,5 +1,4 @@
 import { useState } from "react";
-
 const AddFoodItem = () => {
   const [name, setName] = useState();
   const [price, setPrice] = useState();
@@ -8,6 +7,26 @@ const AddFoodItem = () => {
 
   const handleAddFoodItem = async () => {
     console.log(name, price, path, description);
+    let restaurant_id;
+    const restaurantData = JSON.parse(localStorage.getItem("restaurantUser"));
+    if (restaurantData) {
+      restaurant_id = restaurantData._id;
+    }
+    let response = await fetch("http://localhost:3000/api/restaurant/foods", {
+      method: "POST",
+      body: JSON.stringify({
+        name,
+        price,
+        img_path: path,
+        description,
+        restaurant_id,
+      }),
+    });
+    response = await response.json();
+
+    if (response.success) {
+      alert("Food item registered successfully");
+    }
   };
 
   return (
